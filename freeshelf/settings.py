@@ -126,3 +126,7 @@ STATIC_URL = '/static/'
 ACCOUNT_ACTIVATION_DAYS = 7
 
 LOGIN_REDIRECT_URL = '/'
+
+
+import django_heroku
+django_heroku.settings(locals())
