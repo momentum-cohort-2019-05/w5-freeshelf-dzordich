@@ -2,9 +2,14 @@
 
 {% block content %}
     {% if new_favorite %}
-        <p>Book successfuly added to favorites.</p>
-        <br>
-        <p><a href="{% url 'user-favorites' %}">Go to your favorites </a> | <a href="{{ book.get_absolute_url }}"> Back to book</a></p>
-
+        {% if created %}
+            <p>Book successfuly added to favorites.</p>
+            <br>
+            <p><a href="{% url 'user-favorites' %}">Go to your favorites </a> | <a href="{{ book.get_absolute_url }}"> Back to book</a></p>
+        {% else %}
+            <p>Book successfuly removed from favorites.</p>
+            <br>
+            <p><a href="{% url 'user-favorites' %}">Go to your favorites </a> | <a href="{{ book.get_absolute_url }}"> Back to book</a></p>
+        {% endif %}    
     {% endif %}
 {% endblock %}

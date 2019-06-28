@@ -9,7 +9,11 @@
         <p class="smallertext">Added: {{ book.date }}</p>
         <br>
         {% if request.user.is_authenticated %}
-            <p><a href="{% url 'success' book.pk %}">Add Book to Favorites</a></p>
+            {% if is_favorited %}
+                <p><a href="{% url 'success' book.pk %}">Remove from Favorites</a></p>
+            {% else %}
+                <p><a href="{% url 'success' book.pk %}">Add to Favorites</a></p>
+            {% endif %}
         {% endif %}
     </div>
 {% endblock %}

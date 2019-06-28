@@ -19,8 +19,24 @@ class CategoryList(generic.ListView):
     model = Category
 
 
-class BookDetailView(generic.DetailView):
-    model = Book
+# class BookDetailView(generic.DetailView):
+#     model = Book
+
+
+def book_detail_page(request, pk):
+    book = Book.objects.get(pk=pk)
+    is_favorited = False
+    if request.user.is_authenticated:
+        if Favorites.objects.filter(owner=request.user, book=book).exists():
+            is_favorited = True
+
+    context = {
+        'book': book, 
+        'is_favorited': is_favorited,
+    }
+
+    return render(request, 'catalog/book_detail.html', context)
+
 
 class BookListView(generic.ListView):
     model = Book
@@ -60,11 +76,14 @@ def user_favorites(request):
 def add_to_favorites(request, pk):
     book = get_object_or_404(Book, pk=pk)
 
-    new_favorite = Favorites.objects.create(book=book, owner=request.user)
-
+    new_favorite, created = Favorites.objects.get_or_create(book=book, owner=request.user)
+    if not created:
+        new_favorite.delete()
+    
     context = {
         'book': book,
         'new_favorite': new_favorite,
+        'created': created,
     }
 
     return render(request, 'catalog/add_favorite_success.html', context)
