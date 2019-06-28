@@ -30,9 +30,12 @@ def book_detail_page(request, pk):
         if Favorites.objects.filter(owner=request.user, book=book).exists():
             is_favorited = True
 
+    num_favorites = Favorites.objects.filter(book=book).count()
+
     context = {
         'book': book, 
         'is_favorited': is_favorited,
+        'num_favorites': num_favorites,
     }
 
     return render(request, 'catalog/book_detail.html', context)
