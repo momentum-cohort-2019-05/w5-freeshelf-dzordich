@@ -18,9 +18,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('title', models.CharField(help_text='Enter name of book', max_length=100)),
                 ('date', models.DateField(default=datetime.date.today)),
-                ('author', models.CharField(help_text='Enter name of author', max_length=25)),
+                ('author', models.CharField(help_text='Enter name of author', max_length=100)),
                 ('url', models.URLField()),
-                ('description', models.CharField(help_text='Enter brief description for book', max_length=144)),
+                ('description', models.CharField(help_text='Enter brief description for book', max_length=500)),
                 ('id', models.UUIDField(default=uuid.uuid4, primary_key=True, serialize=False)),
             ],
             options={

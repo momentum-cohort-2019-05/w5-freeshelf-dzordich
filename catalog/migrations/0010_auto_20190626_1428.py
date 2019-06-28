@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('date', models.DateField(default=date.today)),
                 ('author', models.CharField(max_length=25, help_text='Enter name of author')),
                 ('url', models.URLField()),
-                ('description', models.CharField(max_length=144, help_text="enter brief description")),
+                ('description', models.CharField(max_length=500, help_text="enter brief description")),
                 ('category', models.ForeignKey('Category', blank=True, null=True, on_delete=models.SET_NULL)),
             ]
         )

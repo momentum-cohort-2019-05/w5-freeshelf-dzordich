@@ -4,25 +4,6 @@ from django.db import migrations
 
 
 
-def add_books_from_file(apps, schema_editor):
-    Book = apps.get_model('catalog', 'Book')
-
-    Book.objects.all().delete()
-
-
-    file = open('sample_books.csv')
-    lines = file.readlines()
-    file.close()
-
-    for line in lines:
-        data = []
-        goodline = line[0:(len(line) - 1)]
-        description = goodline.split(',"')[1]
-        l_data = goodline.split(',"')[0].split(",")
-        data.append(l_data)
-
-        b = Book.objects.create(title=l_data[0], author=l_data[1], url=l_data[2], description=description)    
-        b.save()
 
 class Migration(migrations.Migration):
 
@@ -31,5 +12,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(add_books_from_file)
     ]
