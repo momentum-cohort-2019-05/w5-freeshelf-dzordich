@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import uuid
+
 
 
 class Migration(migrations.Migration):
@@ -16,10 +16,5 @@ class Migration(migrations.Migration):
             model_name='book',
             name='category',
             field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='catalog.Category'),
-        ),
-        migrations.AlterField(
-            model_name='category',
-            name='id',
-            field=models.UUIDField(default=uuid.uuid4, primary_key=True, serialize=False),
         ),
     ]
