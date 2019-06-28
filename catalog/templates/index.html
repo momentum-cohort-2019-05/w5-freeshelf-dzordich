@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<p>Welcome to Freeshelf! Our mission is to provide free learning material to anyone wishing to learn to code.</p>
+
+<p>
+    <div>
+        Recent additions:
+    </div>
+    <br>
+    <div class="comment">
+        <h3><a href="{{ latest_book.get_absolute_url }}">{{ latest_book.title }}</a></h3><h6>{{ latest_book.author }}</h6>
+        <h6>Category: {{ latest_book.category }}</h6>
+        <br>
+        <p>{{ latest_book.description }}</p>
+        <p class="smallertext">Added: {{ latest_book.date }}</p>
+    </div>
+</p>
+
+{% endblock %}

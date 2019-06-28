@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="comment">
+        <h3><a href="{{ book.url }}">{{ book.title }}</a></h3><h6>{{ book.author }}</h6>
+        <h6>Category: {{ book.category.name }}</h6>
+        <br>
+        <p>{{ book.description }}</p>
+        <p class="smallertext">Added: {{ book.date }}</p>
+        <br>
+        {% if request.user.is_authenticated %}
+            <p><a href="{% url 'success' book.pk %}">Add Book to Favorites</a></p>
+        {% endif %}
+    </div>
+{% endblock %}

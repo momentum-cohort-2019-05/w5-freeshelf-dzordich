@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if favorites %}
+    <p>Your favorite books:</p>
+        <ul>
+        {% for book in favorites_list %}
+            <li>
+                <strong><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></strong>
+                <p>Author: {{ book.author }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>You haven't added any books to your favorites yet!</p>
+    {% endif %}
+{% endblock %}

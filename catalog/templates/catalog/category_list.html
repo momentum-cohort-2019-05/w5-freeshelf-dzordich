@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if category_list %}
+    <ul>
+        {% for category in category_list %}
+        <li><a href="{% url 'books-by-category' category.pk %}">{{ category.name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+{% endblock %}

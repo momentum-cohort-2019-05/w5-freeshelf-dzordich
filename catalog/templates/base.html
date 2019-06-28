@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block title %}<title>Freeshelf</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% block meta %}{% endblock %}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <!-- Add additional CSS in static file -->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <div class="menuBar">
+        <h1 class="pagetitle"><a href="{% url 'index' %}">Freeshelf</a></h1>
+                {% if request.user.is_authenticated %}
+                    <p class='headerbuttons'>Logged in as {{ request.user }} | <a href="{% url 'user-favorites' %}">Favorites</a> | <a href="{% url 'auth_logout' %}">Logout</a></p>
+                {% else %}
+                    <p class='headerbuttons'><a href="{% url 'auth_login' %}">Login</a>  |  <a href="{% url 'registration_register' %}">Register  </a></p>
+                {% endif %} 
+    </div>
+    <p class="textcenter">
+        <a href="{% url 'categories' %}">Browse books by category</a>  |  <a href="{% url 'books' %}">All books</a>
+    </p>
+    <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-2">
+                    <ul>     
+                    </ul>
+                </div>
+            </div>
+    <div>
+    {% block content %}{% endblock %}
+</div>
+</body>

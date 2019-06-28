@@ -1,0 +1,68 @@
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.comment {
+    border: 0.2rem outset lightblue;
+    font-size: 12px;
+    color: grey;
+}
+
+.commentdate {
+    font-size: 10px;
+}
+
+.textright {
+    text-align: right;
+    font-size: smaller;
+}
+
+body{
+    width: 900px;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 90%;
+    padding-bottom: 35px;
+}
+
+.pagetitle{
+    font-family: "Helvetica Neue", "Arial", sans-serif;
+    font-size: 3em;
+    font-style:italic;
+    font-weight: bold;
+    text-align: center;
+    color: whitesmoke;
+}
+
+.greytext {
+    color:gray;
+}
+
+.menuBar{
+    background-color: darksalmon;
+    margin: 20px 0;
+    padding: 10px 0;
+    max-width: 100%;
+
+}
+
+.smallergreytext {
+    color:grey;
+    font-size: smaller;
+}
+
+.bloggerpage {
+    border: 0.2rem outset darksalmon;
+    padding: 20px;
+}
+
+.headerbuttons {
+    border: 0 20px;
+    text-align: left;
+}
+
+.textcenter {
+    text-align: center;
+}
