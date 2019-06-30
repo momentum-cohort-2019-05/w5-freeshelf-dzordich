@@ -9,4 +9,5 @@ urlpatterns = [
     path('books/', views.BookListView.as_view(), name='books'),
     path('favorites/', views.user_favorites, name='user-favorites'),
     path('<pk>/successful-add', views.add_to_favorites, name='success'),
+    path('book/<pk>/add_comment', views.add_comment, name='add-comment'),
 ]

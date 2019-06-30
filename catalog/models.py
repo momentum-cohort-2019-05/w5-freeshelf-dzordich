@@ -11,6 +11,9 @@ class Favorites(models.Model):
     owner = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     book = models.ForeignKey('Book', blank=True, null=True, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'{self.owner}'
+
 
 class Book(models.Model):
     title = models.CharField(max_length=100, help_text="Enter name of book")
@@ -39,3 +42,17 @@ class Category(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+
+
+class Comment(models.Model):
+
+    book = models.ForeignKey('Book', on_delete=models.SET_NULL, null=True)
+    date = models.DateField(auto_now_add=True)
+    content = models.CharField(max_length=256, help_text="Enter comment.")
+    commenter = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return str(self.content)
+
+    class Meta:
+        ordering = ['date']

@@ -7,7 +7,7 @@
 .comment {
     border: 0.2rem outset lightblue;
     font-size: 12px;
-    color: grey;
+    color: black;
 }
 
 .commentdate {
@@ -65,4 +65,12 @@ body{
 
 .textcenter {
     text-align: center;
+}
+
+.comment2 {
+
+    border: 0.2rem outset lightblue;
+    margin: 0 30px;
+    font-size: 12px;
+    color: grey;
 }

@@ -1,8 +1,12 @@
+from django.contrib.auth import get_user
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
 from django.views import generic
 
-from catalog.models import Book, Category, Favorites
+from catalog.forms import CommentForm
+from catalog.models import Book, Category, Favorites, Comment
 
 def index(request):
 
@@ -18,9 +22,6 @@ def index(request):
 class CategoryList(generic.ListView):
     model = Category
 
-
-# class BookDetailView(generic.DetailView):
-#     model = Book
 
 
 def book_detail_page(request, pk):
@@ -90,3 +91,28 @@ def add_to_favorites(request, pk):
     }
 
     return render(request, 'catalog/add_favorite_success.html', context)
+
+
+@login_required
+def add_comment(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+
+        if form.is_valid():
+            comment = Comment.objects.create(content=form.cleaned_data['user_comment'], commenter=get_user(request), book=book)
+            comment.save()
+
+            return HttpResponseRedirect(reverse('book-detail', args=pk))
+
+    # If this is a GET (or any other method) create the default form.
+    else:
+        form = CommentForm()
+
+    context = {
+        'form': form,
+        'book': book,
+    }
+
+    return render(request, 'catalog/add_comment.html', context)
